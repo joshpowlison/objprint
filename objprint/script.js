@@ -41,7 +41,7 @@ function ObjPrint(obj={}){
 	// PRIVATE FUNCTIONS //
 	
 	// This is run for the overall object and sub-objects
-	function buildObjectList(obj,level=1,depth=''){
+	function buildObjectList(obj,level=1,depth='',name=''){
 		container.className='objprint-container';
 		
 		var keys=Object.keys(obj);
@@ -67,6 +67,7 @@ function ObjPrint(obj={}){
 				nameEl.dataset.call=depth+'#';
 			}
 			
+			
 			// What do we do with this?
 			if(getPropertyText(nameEl.dataset.call)===null){
 				if(O.unsetAction==='hide') continue;
@@ -75,7 +76,7 @@ function ObjPrint(obj={}){
 				nameEl.dataset.select='true';
 			}
 			
-			nameEl.dataset.name=depth+keys[i];
+			nameEl.dataset.name=name+keys[i];
 			
 			lineEl.appendChild(nameEl);
 			lineEl.insertAdjacentHTML('beforeend',': ');
@@ -112,7 +113,7 @@ function ObjPrint(obj={}){
 						}
 						
 						valueEl.insertAdjacentHTML('beforeend',Array.isArray(value) ? '[' : '{');
-						buildObjectList(value,level+1,nameEl.dataset.call+'.');
+						buildObjectList(value,level+1,nameEl.dataset.call+'.',nameEl.dataset.name+'.');
 					}
 					break;
 				case 'function':
