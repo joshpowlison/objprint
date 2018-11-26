@@ -105,7 +105,10 @@ function ObjPrint(obj={}){
 					else{
 						// Add the opening tag with its attributes if it's an HTML element
 						if(value.tagName){
-							valueEl.insertAdjacentText('beforeend',/^[^>]+?>/.exec(value.outerHTML)[0]);
+							var elementEl=document.createElement('span');
+							elementEl.innerText=/^[^>]+?>/.exec(value.outerHTML)[0];
+							elementEl.className='objprint-element';
+							valueEl.appendChild(elementEl);
 						}
 						
 						valueEl.insertAdjacentHTML('beforeend',Array.isArray(value) ? '[' : '{');
