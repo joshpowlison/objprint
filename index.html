@@ -9,41 +9,43 @@
 </head>
 <body>
 	<main>
-		<div id="code"></div>
-		<p id="propertyExplanation"></p>
-		<div id="placeholder"></div>
+		<div id="object"></div>
+		<p id="explanation"></p>
 		<script>
 			var printer=new ObjPrint({
-				window:document.getElementById("code"),
-				explanationWindow:document.getElementById("propertyExplanation"),
-				properties:{
-					'array':'Arrays will list the place in the array!'
-					,'string':'A collection of characters.'
-					,'function':'F'
-					,'simpleFunction':'This function just has 1 input value.'
-					,'simpleFunction(input)':'What goes in to the function.'
-					,'complexFunction':'This function has multiple input values.'
-					,'complexFunction(first)':'The function\'s first value.'
-					//,'complexFunction(second)':'The function\'s second value.'
-					,'complexFunction(third)':'The function\'s third value.'
-					//,'object':'Description'
-					,'object.test':'Description'
-					,'array.#':'An element in an array.'
-				}
+				window:document.getElementById("object"), // The element the object will be printed into
+				explanationWindow:document.getElementById("explanation"), // The element the explanation will be printed into
+				properties:{ // A list of explanations for various properties
+				'normal':'This will display for a property called normal.'
+				,'parent':'This will display for a property called parent.'
+				,'parent.child':'This will display for property child of object parent.'
+				,'parent.*':'This will display for all children of object parent. * is a wildcard for any value.'
+				,'arr':'This will display for a property called arr.'
+				,'arr.#':'This will display for all instances in an array called arr. # is a wildcard for any array index.'
+				,'func':'This will display for a property called func.'
+				,'func(firstParam)':'This will display for the parameter called firstParam for a function called func.'
+				,'func(secondParam)':'This will display for the parameter called secondParam for a function called func.'
+				},
+				unsetAction:'default' // Can be 'default' or 'hide'. If 'hide', any property without information to call on will be hidden.
 			});
-			
-			printer.print({
-				'array':['first','second','third']
-				,'string':'This is text!'
-				,'simpleFunction':function(input){console.log('test')}
-				,'complexFunction':function(first="default-value",second,third){}
-				,'object':{
-					'test':'Testing'
-				}
-				
-			});
+
+			var objToPass={
+				normal:'This is a property.',
+				parent:{
+					'child':'This is a child of a parent object.',
+					'otherChild':'This is another child.',
+					'forgottenChild':'This is yet another child.'
+				},
+				arr:[
+					'First item',
+					'Second item',
+					'Third item'
+				],
+				func:function(firstParam,secondParam){}
+			};
+
+			printer.print(objToPass);
 		</script>
-		<small>Showpony is Open Source under an MIT License. Version in Demo: DEV BRANCH</small>
 	</main>
 </body>
 </html>
