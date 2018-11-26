@@ -11,17 +11,6 @@
 	transition:background-color .1s,color .1s;
 }
 
-.objprint-study{
-	background-color:#000;
-	color:#fff;
-}
-
-.objprint-explanation{
-	background-color:#000;
-	color:#fff;
-	padding:.25em;
-}
-
 .objprint-number
 ,.objprint-string{
 	
@@ -35,6 +24,21 @@
 
 .objprint-parameter{
 	font-style:normal;
+}
+
+
+/* The explanation, placed outside of the main text window */
+.objprint-explanation{
+	font-family:monospace;
+	background-color:#000;
+	color:#fff;
+	padding:.25em;
+}
+
+/* The currently selected item */
+.objprint-study{
+	background-color:#000;
+	color:#fff;
 }
 
 /* The design of elements you can select */
