@@ -212,8 +212,12 @@ function ObjPrint(obj={}){
 		
 		event.target.classList.add('objprint-study');
 		
-		//Only surround the relevant part of the name with strong tags
-		var nameDisplay=event.target.dataset.name.replace(event.target.innerHTML,'<strong>'+event.target.innerHTML+'</strong>');;
+		// Get the regex-safe name and find the last instance of it
+		var searchString=event.target.innerHTML;
+		var regex=new RegExp(searchString+'(?=(?:(?!'+searchString+').)*$)');
+		
+		// Only surround the relevant part of the name with strong tags
+		var nameDisplay=event.target.dataset.name.replace(regex,'<strong>'+event.target.innerHTML+'</strong>');;
 		
 		O.explanationWindow.innerHTML=nameDisplay+": "+getPropertyText(event.target.dataset.call);
 	});
