@@ -108,10 +108,7 @@ function ObjPrint(obj={}){
 					}
 					break;
 				case 'function':
-					console.log(value.toString());
 					var functionText=/([^(]+)\(([^\)]*)\)(?={)/.exec(value.toString());
-					
-					console.log(functionText);
 					
 					valueEl.innerHTML=functionText[1]+'(';
 					
