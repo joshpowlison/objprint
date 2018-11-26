@@ -1,0 +1,43 @@
+.objprint-window{
+	font-family:monospace;
+}
+
+.objprint-line
+,.objprint-bracket{
+	margin:0;
+}
+
+.objprint-name{
+	transition:background-color .1s,color .1s;
+}
+
+.objprint-study{
+	background-color:#000;
+	color:#fff;
+}
+
+.objprint-explanation{
+	background-color:#000;
+	color:#fff;
+	padding:.25em;
+}
+
+.objprint-number
+,.objprint-string{
+	
+}
+
+.objprint-function
+,.objprint-null
+,.objprint-undefined{
+	font-style:italic;
+}
+
+.objprint-parameter{
+	font-style:normal;
+}
+
+/* The design of elements you can select */
+.objprint-window [data-select="true"]{
+	font-weight:bold;
+}

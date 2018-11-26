@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ObjPrint Demo</title>
+	<meta name="description" content="A free multimedia engine for the web with automatic bookmarking, a simple API, and a light footprint!">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" href="styles.css">
+	<script src="objprint.js"></script>
+</head>
+<body>
+	<main>
+		<div id="code"></div>
+		<p id="propertyExplanation"></p>
+		<div id="placeholder"></div>
+		<script>
+			var printer=new ObjPrint({
+				window:document.getElementById("code"),
+				explanationWindow:document.getElementById("propertyExplanation"),
+				properties:{
+					'array':'Arrays will list the place in the array!'
+					,'string':'A collection of characters.'
+					,'function':'F'
+					,'simpleFunction':'This function just has 1 input value.'
+					,'simpleFunction(input)':'What goes in to the function.'
+					,'complexFunction':'This function has multiple input values.'
+					,'complexFunction(first)':'The function\'s first value.'
+					//,'complexFunction(second)':'The function\'s second value.'
+					,'complexFunction(third)':'The function\'s third value.'
+					//,'object':'Description'
+					,'object.test':'Description'
+					,'array.#':'An element in an array.'
+				}
+			});
+			
+			printer.print({
+				'array':['first','second','third']
+				,'string':'This is text!'
+				,'simpleFunction':function(input){console.log('test')}
+				,'complexFunction':function(first="default-value",second,third){}
+				,'object':{
+					'test':'Testing'
+				}
+				
+			});
+		</script>
+		<small>Showpony is Open Source under an MIT License. Version in Demo: DEV BRANCH</small>
+	</main>
+</body>
+</html>
