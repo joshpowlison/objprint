@@ -109,36 +109,41 @@ function ObjPrint(obj={}){
 					break;
 				case 'function':
 					console.log(value.toString());
-					var functionText=/([^(]+)\(([^\)]+)/.exec(value.toString());
+					var functionText=/([^(]+)\(([^\)]*)\)(?={)/.exec(value.toString());
+					
+					console.log(functionText);
 					
 					valueEl.innerHTML=functionText[1]+'(';
 					
-					var parameters=functionText[2].split(',');
-					for(var ii=0;ii<parameters.length;ii++){
-						var parameterEl=document.createElement('span');
-						
-						var parameterSplit=/([^=]+)(=.+)?/.exec(parameters[ii]);
-						
-						parameterEl.dataset.call=nameEl.dataset.call+'('+parameterSplit[1]+')';
-						parameterEl.className='objprint-parameter';
-						parameterEl.innerHTML=parameterSplit[1];
-						
-						parameterEl.dataset.name=nameEl.dataset.call+'('+parameterSplit[1]+')';
-						
-						valueEl.appendChild(parameterEl);
-						
-						// What do we do with this?
-						if(getPropertyText(parameterEl.dataset.call)===null){
-							parameterEl.dataset.select='false';
-						}else{
-							parameterEl.dataset.select='true';
-						}
-						
-						if(parameterSplit[2]) valueEl.insertAdjacentHTML('beforeend',parameterSplit[2]);
-						
-						if(ii<parameters.length-1) valueEl.insertAdjacentHTML('beforeend',',');
-						
-						if(ii>5) break;
+					// Add function parameters if needbe
+					if(functionText[2]!==''){
+						var parameters=functionText[2].split(',');
+						for(var ii=0;ii<parameters.length;ii++){
+							var parameterEl=document.createElement('span');
+							
+							var parameterSplit=/([^=]+)(=.+)?/.exec(parameters[ii]);
+							
+							parameterEl.dataset.call=nameEl.dataset.call+'('+parameterSplit[1]+')';
+							parameterEl.className='objprint-parameter';
+							parameterEl.innerHTML=parameterSplit[1];
+							
+							parameterEl.dataset.name=nameEl.dataset.call+'('+parameterSplit[1]+')';
+							
+							valueEl.appendChild(parameterEl);
+							
+							// What do we do with this?
+							if(getPropertyText(parameterEl.dataset.call)===null){
+								parameterEl.dataset.select='false';
+							}else{
+								parameterEl.dataset.select='true';
+							}
+							
+							if(parameterSplit[2]) valueEl.insertAdjacentHTML('beforeend',parameterSplit[2]);
+							
+							if(ii<parameters.length-1) valueEl.insertAdjacentHTML('beforeend',',');
+							
+							if(ii>5) break;
+					}
 					}
 					
 					valueEl.insertAdjacentHTML('beforeend',')');
