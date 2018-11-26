@@ -103,7 +103,12 @@ function ObjPrint(obj={}){
 						valueEl.className='objprint-null';
 					}
 					else{
-						valueEl.innerHTML=Array.isArray(value) ? '[' : '{';
+						// Add the opening tag with its attributes if it's an HTML element
+						if(value.tagName){
+							valueEl.insertAdjacentText('beforeend',/^[^>]+?>/.exec(value.outerHTML)[0]);
+						}
+						
+						valueEl.insertAdjacentHTML('beforeend',Array.isArray(value) ? '[' : '{');
 						buildObjectList(value,level+1,nameEl.dataset.call+'.');
 					}
 					break;
