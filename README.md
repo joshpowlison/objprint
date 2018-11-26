@@ -2,6 +2,8 @@
 
 Share info on your JS objects. Great for API test pages and the like.
 
+You can see it being used live with [Ferret](https://ferret.heybard.com/).
+
 # Setup
 
 1. Load in JS and CSS files.
