@@ -2,7 +2,7 @@
 
 Print out your JS objects clearly and hover over their properties for more info! Great for demo webpages and the like.
 
-You can see it being used live with [Ferret](https://ferret.heybard.com/).
+You can see it being used live with [Showpony](http://showpony.heybard.com) and [Ferret](https://ferret.heybard.com/).
 
 # Setup
 
